@@ -10,7 +10,17 @@ public class RaceDemo {
             int stock=100;
             int shoppers=200;
 
-            NaiveInventory inventory=new NaiveInventory(stock);
+            Inventory inventory;
+
+            if(args.length>0 && args[0].equals("sync")){
+                inventory=new SynchronizedInventory(stock);
+            }else{
+                inventory=new NaiveInventory(stock);
+            }
+                        System.out.println("Design: " + inventory.getClass().getSimpleName());
+
+
+
             AtomicInteger successes= new AtomicInteger();
 
             CountDownLatch startGate=new CountDownLatch(1);
@@ -41,6 +51,7 @@ public class RaceDemo {
 
             int sold=successes.get();
             int left=inventory.available();
+               System.out.println("Design: " + inventory.getClass().getSimpleName());
 
             System.out.println("Stock at start: "+stock);
             System.out.println("Reserved:       "+sold);

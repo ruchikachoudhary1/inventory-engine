@@ -1,6 +1,6 @@
 package dev.ruchika.inventory;
 
-public class NaiveInventory{
+public class NaiveInventory implements Inventory{
 
     private int available;
 
@@ -8,7 +8,8 @@ public NaiveInventory (int initialStock){
    available=initialStock;
   }
 
-  public synchronized boolean reserve(int qty){
+  @Override 
+  public boolean reserve(int qty){
     if(available>=qty){
         Thread.yield();
         available-=qty;
@@ -16,6 +17,8 @@ public NaiveInventory (int initialStock){
     }
     return false;
   }
+
+  @Override 
   public int available(){
     return available;
   }

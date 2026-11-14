@@ -17,7 +17,6 @@ public class RaceDemo {
             }else{
                 inventory=new NaiveInventory(stock);
             }
-                        System.out.println("Design: " + inventory.getClass().getSimpleName());
 
 
 
